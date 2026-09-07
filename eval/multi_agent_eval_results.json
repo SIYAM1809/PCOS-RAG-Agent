@@ -1,0 +1,95 @@
+{
+  "timestamp": "2026-09-07T17:28:53Z",
+  "pipeline": "langgraph_multi_agent_state_machine",
+  "architecture": "Supervisor -> [Guideline CRAG | Clinical | Imaging | Hybrid | Request Data] -> Final Synthesis",
+  "agents_integrated": [
+    "SupervisorAgent (LLM Semantic Intent Classifier + Guardrails)",
+    "ClinicalAgent (Tabular Risk Ensemble + SHAP Attribution)",
+    "ImagingAgent (PyTorch ConvNeXt Classifier)",
+    "GuidelineAgent (Weaviate Vector Store + CRAG Rewrite Subgraph)"
+  ],
+  "total_test_cases": 11,
+  "results": [
+    {
+      "id": 1,
+      "category": "Guideline Baseline",
+      "query": "What are the 3 core diagnostic criteria established in the Rotterdam 2003 consensus for PCOS?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 2,
+      "category": "Guideline Baseline",
+      "query": "What are the specific ultrasound threshold criteria (follicle count or ovarian volume) for defining polycystic ovarian morphology?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 3,
+      "category": "Guideline Baseline",
+      "query": "Why would an elevated LH to FSH ratio be observed in a patient suspected of PCOS?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 4,
+      "category": "Guideline Baseline",
+      "query": "What lifestyle and behavioral interventions are recommended as the first-line management approach for PCOS?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 5,
+      "category": "Guideline Baseline",
+      "query": "How should diagnostic assessment for PCOS differ between adolescents and adult women?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 6,
+      "category": "Guideline CRAG Rewrite",
+      "query": "why do I have weird skipped periods and extra dark facial hair growing?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 7,
+      "category": "Guideline Out-of-Scope",
+      "query": "What is the recommended dosing titration for semaglutide in pediatric differentiated thyroid carcinoma?",
+      "routed_to": "guideline",
+      "status": "PASS"
+    },
+    {
+      "id": 8,
+      "category": "Clinical Route",
+      "query": "Why was I flagged high risk given my LH to FSH ratio of 3.0 and cycle length of 48 days?",
+      "routed_to": "clinical",
+      "risk_score": 0.95,
+      "status": "PASS"
+    },
+    {
+      "id": 9,
+      "category": "Missing Data Guardrail",
+      "query": "Can you analyze my blood test results and calculate my PCOS risk score?",
+      "routed_to": "request_data",
+      "missing_data_caught": true,
+      "status": "PASS"
+    },
+    {
+      "id": 10,
+      "category": "Hybrid Concordant Route",
+      "query": "Explain my risk given my elevated LH:FSH lab values and this ultrasound scan showing peripheral follicles, and outline guideline next steps.",
+      "routed_to": "hybrid",
+      "informed_retrieval_verified": true,
+      "status": "PASS"
+    },
+    {
+      "id": 11,
+      "category": "Hybrid Discordant Route (Low Lab Risk + High Ultrasound)",
+      "query": "My blood labs were normal but my ultrasound scan showed polycystic ovaries. How do guidelines interpret this conflicting result?",
+      "routed_to": "hybrid",
+      "discordant_reasoning_verified": true,
+      "status": "PASS"
+    }
+  ]
+}
