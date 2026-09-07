@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-09-07T17:15:14Z",
+  "pipeline": "langgraph_stage_b_crag",
+  "vector_store": "Weaviate Cloud (PCOS_Guidelines)",
+  "llm": "Groq (openai/gpt-oss-120b)",
+  "crag_architecture": "START -> retrieve -> grade_documents -> [Conditional: generate | transform_query] -> generate -> END",
+  "max_retries": 1,
+  "results": [
+    {
+      "id": 1,
+      "category": "Baseline",
+      "question": "What are the 3 core diagnostic criteria established in the Rotterdam 2003 consensus for PCOS?",
+      "grade": "YES",
+      "retries": 0,
+      "path": ["retrieve", "grade_documents(grade='yes')", "generate"],
+      "status": "PASS"
+    },
+    {
+      "id": 2,
+      "category": "Baseline",
+      "question": "What are the specific ultrasound threshold criteria (follicle count or ovarian volume) for defining polycystic ovarian morphology?",
+      "grade": "YES",
+      "retries": 0,
+      "path": ["retrieve", "grade_documents(grade='yes')", "generate"],
+      "status": "PASS"
+    },
+    {
+      "id": 3,
+      "category": "Baseline",
+      "question": "Why would an elevated LH to FSH ratio be observed in a patient suspected of PCOS?",
+      "grade": "YES",
+      "retries": 0,
+      "path": ["retrieve", "grade_documents(grade='yes')", "generate"],
+      "status": "PASS"
+    },
+    {
+      "id": 4,
+      "category": "Baseline",
+      "question": "What lifestyle and behavioral interventions are recommended as the first-line management approach for PCOS?",
+      "grade": "YES",
+      "retries": 0,
+      "path": ["retrieve", "grade_documents(grade='yes')", "generate"],
+      "status": "PASS"
+    },
+    {
+      "id": 5,
+      "category": "Baseline",
+      "question": "How should diagnostic assessment for PCOS differ between adolescents and adult women?",
+      "grade": "YES",
+      "retries": 0,
+      "path": ["retrieve", "grade_documents(grade='yes')", "generate"],
+      "status": "PASS"
+    },
+    {
+      "id": 6,
+      "category": "Lay Terminology (CRAG Rewrite Test)",
+      "question": "why do I have weird skipped periods and extra dark facial hair growing?",
+      "grade": "YES (after rewrite)",
+      "retries": 1,
+      "rewritten_query": "oligomenorrhea hirsutism hyperandrogenism diagnostic evaluation PCOS guidelines",
+      "path": [
+        "retrieve(original)",
+        "grade_documents(grade='no')",
+        "transform_query(retry=1)",
+        "retrieve(rewritten)",
+        "grade_documents(grade='yes')",
+        "generate"
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": 7,
+      "category": "Out of Scope (Hard Stop & No-Hallucination Test)",
+      "question": "What is the recommended dosing titration for semaglutide in pediatric differentiated thyroid carcinoma?",
+      "grade": "NO (Hard Stop Enforced)",
+      "retries": 1,
+      "path": [
+        "retrieve(original)",
+        "grade_documents(grade='no')",
+        "transform_query(retry=1)",
+        "retrieve(rewritten)",
+        "grade_documents(grade='no')",
+        "router(max_retries_reached)",
+        "generate"
+      ],
+      "hallucination_detected": false,
+      "status": "PASS"
+    }
+  ]
+}
