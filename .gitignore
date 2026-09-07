@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Environment Variables
+.env
+.env.local
+
+# Models and Large weights
+models/*.pkl
+models/*.joblib
+models/*.pt
+models/*.pth
+models/*.bin
+models/*.onnx
+!models/.gitkeep
+
+# Data & Documents
+data/guidelines/*.pdf
+!data/guidelines/.gitkeep
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+*.log

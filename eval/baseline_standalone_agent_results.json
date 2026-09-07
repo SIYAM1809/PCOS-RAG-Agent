@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-09-07T16:56:33Z",
+  "pipeline": "standalone_guideline_agent",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "vector_store": "Weaviate Cloud (PCOS_Guidelines)",
+  "llm": "Groq (openai/gpt-oss-120b)",
+  "results": [
+    {
+      "id": 1,
+      "question": "What are the 3 core diagnostic criteria established in the Rotterdam 2003 consensus for PCOS?",
+      "focus": "Diagnostic Criteria Definition & 2-out-of-3 Rule",
+      "status": "PASS",
+      "sources": [
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 2.0}
+      ]
+    },
+    {
+      "id": 2,
+      "question": "What are the specific ultrasound threshold criteria (follicle count or ovarian volume) for defining polycystic ovarian morphology?",
+      "focus": "Ultrasound Thresholds",
+      "status": "PASS",
+      "sources": [
+        {"file": "monash_2023_international_guideline.pdf", "page": 6.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 6.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 5.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 5.0}
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Why would an elevated LH to FSH ratio be observed in a patient suspected of PCOS?",
+      "focus": "Biochemical / Hormonal Ratios",
+      "status": "PASS",
+      "sources": [
+        {"file": "rotterdam_2003_consensus.pdf", "page": 3.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 1.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 3.0}
+      ]
+    },
+    {
+      "id": 4,
+      "question": "What lifestyle and behavioral interventions are recommended as the first-line management approach for PCOS?",
+      "focus": "First-Line Clinical Management",
+      "status": "PASS",
+      "sources": [
+        {"file": "monash_2023_international_guideline.pdf", "page": 10.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 11.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 11.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 13.0}
+      ]
+    },
+    {
+      "id": 5,
+      "question": "How should diagnostic assessment for PCOS differ between adolescents and adult women?",
+      "focus": "Adolescent vs Adult Nuance",
+      "status": "PASS",
+      "sources": [
+        {"file": "monash_2023_international_guideline.pdf", "page": 4.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0},
+        {"file": "monash_2023_international_guideline.pdf", "page": 3.0},
+        {"file": "rotterdam_2003_consensus.pdf", "page": 0.0}
+      ]
+    }
+  ]
+}
