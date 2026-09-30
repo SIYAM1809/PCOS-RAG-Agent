@@ -1,3 +1,7 @@
+# ── Production dependencies only (no eval / research tools) ───────────────
+# Install torch separately via Dockerfile using CPU wheel.
+# Do NOT add torch/torchvision here — handled in Dockerfile layer.
+
 # Core LangChain / LangGraph stack
 langchain==0.3.25
 langgraph==0.2.74
@@ -13,10 +17,8 @@ weaviate-client==4.9.6
 # Knowledge Graph
 neo4j==5.25.0
 
-# Evaluation
-ragas==0.2.15
+# Observability (tracing only — no eval runner)
 langsmith==0.1.147
-datasets==3.2.0
 
 # API server
 fastapi==0.115.12
@@ -34,7 +36,6 @@ pillow==11.1.0
 
 # ML / Tabular models
 numpy==1.26.4
-torch==2.6.0
 xgboost==2.1.4
 lightgbm==4.6.0
 catboost==1.2.7

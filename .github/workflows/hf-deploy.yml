@@ -1,0 +1,46 @@
+# ── Auto-deploy to HuggingFace Spaces on every push to main ───────────────
+#
+# Required GitHub Secrets (Settings → Secrets → Actions):
+#   HF_TOKEN          — HuggingFace token (write access)
+#   HF_SPACE_NAME     — e.g. "pcos-care-navigator"
+#   HF_USERNAME       — your HuggingFace username
+#
+# The workflow pushes your repo to:
+#   https://huggingface.co/spaces/<HF_USERNAME>/<HF_SPACE_NAME>
+# ─────────────────────────────────────────────────────────────────────────
+
+name: Deploy to HuggingFace Spaces
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:   # also allows manual trigger from GitHub Actions UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history needed for git push
+          lfs: true
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Push to HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+          HF_SPACE_NAME: ${{ secrets.HF_SPACE_NAME }}
+        run: |
+          # Clone the HF Space (creates it if it doesn't exist via the API)
+          git remote add hf \
+            "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$HF_SPACE_NAME"
+
+          # Force-push current branch to main on HF Spaces
+          git push hf HEAD:main --force

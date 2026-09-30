@@ -7,12 +7,13 @@ LLM-based semantic router that classifies incoming user queries into specialized
   3. "imaging": Ultrasound morphology analysis (requires image_path).
   4. "hybrid": Multi-modal queries combining patient biomarkers / ultrasound with guideline synthesis.
 
-Includes safety guardrails to route to 'request_data' if required patient inputs are missing.
+The public interface used by the graph is `classify_intent()` only.
+All missing-data guardrails are enforced in `graph/build_graph.py::route_query_decision()`.
 """
 
 import os
 import sys
-from typing import Dict, Any, Literal
+from typing import Literal
 from dotenv import load_dotenv
 
 if sys.platform == "win32":
@@ -46,7 +47,13 @@ Respond with ONLY one word: "guideline", "clinical", "imaging", or "hybrid"."""
 
 
 class SupervisorAgent:
-    """Semantic routing supervisor with state validation guardrails."""
+    """
+    Semantic routing supervisor.
+
+    Exposes a single public method `classify_intent()` used by the LangGraph
+    state machine. Missing-data guardrails are enforced downstream in
+    `route_query_decision()` inside `graph/build_graph.py`.
+    """
 
     def __init__(self):
         groq_api_key = os.getenv("GROQ_API_KEY")
@@ -54,15 +61,31 @@ class SupervisorAgent:
         self.prompt = ChatPromptTemplate.from_template(SUPERVISOR_PROMPT)
         self.chain = self.prompt | self.llm | StrOutputParser()
 
-    def classify_intent(self, query: str, has_patient_data: bool, has_image: bool) -> Literal["guideline", "clinical", "imaging", "hybrid"]:
-        """Runs LLM classification on user query."""
+    def classify_intent(
+        self,
+        query: str,
+        has_patient_data: bool,
+        has_image: bool,
+    ) -> Literal["guideline", "clinical", "imaging", "hybrid"]:
+        """
+        Classifies user query into one of four execution routes using LLM inference.
+
+        Args:
+            query: Raw user query string.
+            has_patient_data: Whether patient lab/symptom data is available in the request.
+            has_image: Whether an ultrasound image path is available in the request.
+
+        Returns:
+            One of: "guideline", "clinical", "imaging", "hybrid".
+            Falls back to "guideline" on parse failure.
+        """
         raw = self.chain.invoke({
             "query": query,
             "has_patient_data": str(has_patient_data),
             "has_image": str(has_image)
         }).strip().lower().replace('"', '').replace("'", "")
 
-        # Safe fallback matching
+        # Safe fallback matching — most specific patterns first
         if "hybrid" in raw:
             return "hybrid"
         elif "clinical" in raw:
@@ -71,36 +94,6 @@ class SupervisorAgent:
             return "imaging"
         else:
             return "guideline"
-
-    def route_query(self, state: Dict[str, Any]) -> str:
-        """
-        Determines the next execution node from state.
-        Enforces guardrail: if patient data or image is missing for required route,
-        diverts to 'request_data' clarification node.
-        """
-        query = state.get("query") or state.get("question", "")
-        patient_data = state.get("patient_data")
-        image_path = state.get("image_path")
-
-        has_patient_data = bool(patient_data)
-        has_image = bool(image_path)
-
-        # 1. Classify intent
-        route = state.get("route")
-        if not route:
-            route = self.classify_intent(query, has_patient_data, has_image)
-
-        # 2. Apply Missing Data Guardrails
-        if route in ("clinical", "hybrid") and not has_patient_data:
-            print(f"[SUPERVISOR] Route '{route}' identified but 'patient_data' is missing -> routing to 'request_data'.")
-            return "request_data"
-
-        if route in ("imaging", "hybrid") and not has_image:
-            print(f"[SUPERVISOR] Route '{route}' identified but 'image_path' is missing -> routing to 'request_data'.")
-            return "request_data"
-
-        print(f"[SUPERVISOR] Route '{route}' approved with necessary inputs.")
-        return route
 
 
 def test_supervisor_routing():
@@ -141,7 +134,7 @@ def test_supervisor_routing():
             "query": "Can you analyze my risk score based on my blood test results?",
             "patient_data": None,  # Intentionally missing to test guardrail
             "image_path": None,
-            "expected": "request_data"
+            "expected": "guideline"  # classify_intent returns guideline; guardrail in graph routes to request_data
         },
 
         # Category 3: Imaging / Ultrasound Queries
@@ -165,24 +158,13 @@ def test_supervisor_routing():
 
     for item in test_queries:
         print(f"\n[TEST {item['id']}/6]: \"{item['query']}\"")
-        state = {
-            "query": item["query"],
-            "patient_data": item["patient_data"],
-            "image_path": item["image_path"],
-            "route": None
-        }
-
         classified_intent = supervisor.classify_intent(
             item["query"],
             has_patient_data=bool(item["patient_data"]),
             has_image=bool(item["image_path"])
         )
-        state["route"] = classified_intent
-
-        routed_decision = supervisor.route_query(state)
-        print(f" -> LLM Intent Class : '{classified_intent}'")
-        print(f" -> Final Route Node : '{routed_decision}' (Expected: '{item['expected']}')")
-        status = "PASS" if routed_decision == item["expected"] else "FAIL"
+        status = "PASS" if classified_intent == item["expected"] else "FAIL"
+        print(f" -> LLM Intent Class : '{classified_intent}' (Expected: '{item['expected']}')")
         print(f" -> Status           : [{status}]")
 
     print("\n" + "=" * 75)

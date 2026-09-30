@@ -1,0 +1,157 @@
+id,category,question,faithfulness,context_precision,context_recall,answer_relevancy,answer,ground_truth
+1,Diagnostic Criteria Definition,What are the 3 core diagnostic criteria established in the Rotterdam 2003 consensus for PCOS?,0.5833333333333334,0.99999999995,0.6,0.9333988348530847,"The Rotterdam 2003 consensus defines PCOS as a syndrome that requires **any two of the following three core features** to be present (with other disorders excluded) [Source 2: rotterdam_2003_consensus.pdf, page 1.0]:
+
+1. **Oligo‑ and/or anovulation** – irregular or absent ovulatory cycles.  
+2. **Clinical and/or biochemical signs of hyperandrogenism** – excess androgen activity evident on physical exam (e.g., hirsutism, acne) or laboratory testing.  
+3. **Polycystic ovarian morphology** on ultrasound (or other imaging) – the presence of characteristic ovarian appearance.
+
+These three criteria together constitute the “2‑out‑of‑3” rule that underlies the Rotterdam diagnostic framework for PCOS [Source 1: rotterdam_2003_consensus.pdf, page 0.0].","According to the Rotterdam 2003 consensus, PCOS diagnosis requires the presence of at least 2 of 3 core features. The first core feature is oligo- or anovulation (ovulatory dysfunction). The second core feature is clinical and/or biochemical signs of hyperandrogenism. The third core feature is polycystic ovaries on ultrasound examination. Other etiologies such as congenital adrenal hyperplasia, thyroid disease, or hyperprolactinemia must be excluded."
+2,Ultrasound Thresholds,What are the specific ultrasound threshold criteria (follicle count or ovarian volume) for defining polycystic ovarian morphology?,,0.9999999999,0.75,0.8588563667798078,"**Ultrasound thresholds that are used to define polycystic ovarian morphology (PCOM)**  
+
+| Parameter | Threshold that qualifies as PCOM | Guideline source |
+|-----------|-----------------------------------|------------------|
+| **Ovarian volume (OV)** | **≥ 10 mL** in at least one ovary (used when follicle counting is limited by older equipment or sub‑optimal image quality) | Source 1, p. 6.0 (CR 1.4.5) |
+| **Follicle number per section (FNPS)** | **≥ 10 follicles** in a single cross‑section of at least one ovary (same context as above) | Source 1, p. 6.0 (CR 1.4.5) |
+| **Follicle number per ovary (FNPO)** | The guideline notes that **FNPO is the most effective adult marker** for PCOM, but it does not give a single numeric cut‑off in the excerpt. Historically, the Rotterdam consensus used **≥ 12 follicles (2–9 mm)** per ovary as the cut‑off. | Source 2, p. 5.0 (EBR 1.4.1) and Source 4, p. 2.0 (Rotterdam 2003) |
+| **Combined criteria** | Either an ovarian volume > 10 mL **or** the follicle‑count threshold (FNPO ≥ 12 or FNPS ≥ 10, depending on technology) in **one** ovary is sufficient to label the ovary as polycystic. | Source 1, p. 6.0 (CR 1.4.5) and Source 4, p. 2.0 |
+
+### Key points from the guideline excerpts
+
+1. **Older ultrasound technology or limited image quality** – When full‑ovary follicle enumeration is not feasible, the guideline recommends using a **volume ≥ 10 mL** or **FNPS ≥ 10** as the practical threshold (Source 1, p. 6.0, CR 1.4.5).  
+
+2. **Modern practice in adults** – Follicle number per ovary (FNPO) is highlighted as the most reliable marker, and follicle number per ovary, follicle number per cross‑section, and ovarian volume are all considered accurate markers (Source 2, p. 5.0, EBR 1.4.1‑1.4.3).  
+
+3. **Historical consensus (Rotterdam 2003)** – The original consensus defined PCOM as **≥ 12 follicles (2–9 mm) in each ovary** *or* **ovarian volume > 10 mL**; only one ovary needs to meet the criterion (Source 4, p. 2.0).  
+
+4. **Age‑specific and technology‑driven revisions** – The guideline explicitly states that PCOM thresholds should be **regularly revised** as ultrasound technology advances and that **age‑specific cut‑offs** are desirable (Source 1, p. 6.0, PP 1.4.10).  
+
+5. **Adolescents** – No definitive PCOM criteria are recommended for adolescents; ultrasound is generally not advised for PCOM assessment in this age group (Source 1, p. 6.0, PP 1.4.6).  
+
+### How the thresholds fit into the Rotterdam “2‑out‑of‑3” framework  
+
+- The Rotterdam criteria require **any two of the three**: (1) oligo‑/anovulation, (2) clinical/biochemical hyper‑androgenism, and (3) PCOM on ultrasound.  
+- The ultrasound component can be satisfied by **either** the ovarian‑volume threshold (≥ 10 mL) **or** the follicle‑count threshold (FNPO ≥ 12 or FNPS ≥ 10, depending on equipment).  
+- Because only **one ovary** needs to meet the ultrasound threshold, a patient may have a normal‑appearing contralateral ovary and still fulfill the PCOM criterion.  
+
+---
+
+**Bottom line for clinicians:**  
+When interpreting an adult pelvic ultrasound for PCOM, look for **ovarian volume ≥ 10 mL** or **follicle counts that meet the technology‑appropriate cut‑off (FNPO ≥ 12 or FNPS ≥ 10)** in at least one ovary. Adjust expectations if using older equipment or if image quality is suboptimal, and remember that these thresholds are subject to periodic revision as imaging advances.",Follicle number per ovary (FNPO) ≥ 20 (or 20 or more follicles) in at least one ovary defines polycystic ovarian morphology. Ovarian volume (OV) ≥ 10 ml (or 10 mL or more) in at least one ovary defines polycystic ovarian morphology. Follicle number per section (FNPS) ≥ 10 in at least one ovary can be used when FNPO cannot be reliably assessed. These ultrasound threshold criteria apply to adult women in the absence of a corpus luteum or dominant follicle.
+3,Biochemical / Hormonal Ratios,Why would an elevated LH to FSH ratio be observed in a patient suspected of PCOS?,,,0.5,0.8891903953970224,"**Clinical decision‑support explanation**
+
+An elevated luteinizing hormone (LH) : follicle‑stimulating hormone (FSH) ratio is a **common biochemical pattern that can be seen in women who have features suggestive of polycystic ovary syndrome (PCOS)**.  The Rotterdam consensus documents describe several physiologic and methodological reasons why this ratio may be increased in this population:
+
+| Reason | How it contributes to a higher LH/FSH ratio | Guideline citation |
+|--------|---------------------------------------------|--------------------|
+| **Increased LH pulse amplitude and frequency** | Women with PCOS often have a heightened pulsatile secretion of LH, which raises the absolute LH concentration relative to FSH. This neuroendocrine alteration is a hallmark of the syndrome. | 【Source 1: rotterdam_2003_consensus.pdf | Page 3.0】 |
+| **BMI‑related effects** | Lean women with PCOS tend to have higher LH levels than overweight/obese counterparts, which can accentuate the ratio. | 【Source 2: rotterdam_2003_consensus.pdf | Page 3.0】 |
+| **Timing of blood draw relative to ovulation** | LH levels transiently normalize around the time of an ovulatory LH surge. If the sample is taken close to ovulation, the ratio may appear lower; otherwise, it may be higher. | 【Source 2: rotterdam_2003_consensus.pdf | Page 3.0】 |
+| **Assay variability** | Different laboratory assay systems can yield divergent LH (and FSH) values, influencing the calculated ratio. | 【Source 2: rotterdam_2003_consensus.pdf | Page 3.0】 |
+
+**Why this matters for a PCOS work‑up**
+
+- **Prevalence**: Approximately 60 % of women with PCOS have LH concentrations above the 95th percentile, and up to 95 % may show an elevated LH/FSH ratio when recent ovulation is excluded【Source 1 & 2】.  
+- **Interpretive role**: The consensus panel concluded that **routine measurement of LH (or the LH/FSH ratio) is *not required* for the clinical diagnosis of PCOS**, but it can serve as a **secondary parameter**, especially in lean women with amenorrhea or in research settings【Source 3】.  
+
+**Practical implication for clinicians**
+
+- If a patient’s laboratory panel shows an elevated LH/FSH ratio, this **supports the presence of a PCOS‑compatible endocrine phenotype** but should be interpreted alongside the other two Rotterdam criteria (clinical/biochemical hyperandrogenism and ovarian morphology).  
+- Because the ratio can be influenced by BMI, cycle timing, and assay method, clinicians should **ensure the sample is taken in the early follicular phase (day 2–5 of a presumed cycle) and consider the patient’s body habitus** when weighing this finding.  
+
+**Bottom line**
+
+An elevated LH/FSH ratio in a patient under evaluation for PCOS reflects the characteristic **enhanced LH pulsatility** of the syndrome, modulated by factors such as lean body habitus, timing of sampling, and assay characteristics. While not a mandatory diagnostic test, it can provide useful supportive information when integrated with the full Rotterdam “2‑out‑of‑3” criteria.","An elevated LH to FSH ratio (often 2:1 or 3:1) can be observed in patients with PCOS due to altered hypothalamic GnRH pulse frequency and pituitary sensitivity, which increases LH secretion relative to FSH. Excess LH stimulates ovarian theca cells to produce androgens. While a common supportive biochemical finding, guidelines state that LH:FSH ratio is not a mandatory standalone diagnostic criterion due to high variability."
+4,First-Line Clinical Management,What lifestyle and behavioral interventions are recommended as the first-line management approach for PCOS?,,0.9999999999666667,1.0,0.8366206063727061,"**Decision‑support summary – First‑line lifestyle & behavioural management for women with PCOS**
+
+| Intervention category | What the guideline recommends (first‑line) | Key elements to consider in practice | Guideline source |
+|-----------------------|--------------------------------------------|--------------------------------------|------------------|
+| **Comprehensive lifestyle programme** | Recommend a structured, multicomponent lifestyle intervention (exercise ± diet + behavioural strategies) for *all* women with PCOS to improve metabolic health, central adiposity, lipid profile, body composition and overall quality of life. | • Exercise (aerobic, resistance or mixed) <br>• Dietary advice that follows general population healthy‑eating guidelines (no single diet proven superior) <br>• Ongoing, intensive clinical support to sustain changes | Source 1, p. 10.0 |
+| **Healthy eating & physical activity** | Encourage “healthy lifestyle behaviours” (healthy eating and/or physical activity) for all women, aiming to maintain weight, prevent weight gain, or achieve modest weight loss when appropriate. | • Tailor diet to individual preferences while aligning with population‑level nutrition guidance <br>• Emphasise regular, enjoyable activity that can be sustained long‑term | Source 1, p. 10.0 |
+| **Behavioural strategies** | Include goal‑setting, self‑monitoring, problem‑solving, assertiveness training, reinforcement of change, relapse‑prevention, and use of SMART goals (Specific, Measurable, Achievable, Realistic, Timely). | • Set clear, measurable targets (e.g., weekly activity minutes, food‑logging frequency) <br>• Provide tools for self‑monitoring (apps, journals) <br>• Offer regular check‑ins to adjust goals and address barriers | Sources 2 & 3, p. 11.0 |
+| **Behavioural or cognitive‑behavioural therapy (CBT)‑type programmes** | Consider comprehensive healthy behavioural or cognitive‑behavioural interventions to boost engagement, adherence, and maintenance of lifestyle changes, and to improve emotional wellbeing. | • May be delivered individually or in groups <br>• Can be integrated with diet/exercise counselling <br>• Addresses disordered eating, body‑image distress, low self‑esteem, or other psychosocial concerns | Source 3, p. 11.0 |
+| **Weight‑stigma awareness** | Health‑care professionals should discuss lifestyle management without invoking weight stigma, especially when the woman is not overweight. | • Use person‑first language, focus on health rather than “weight loss” alone <br>• Emphasise prevention of excess weight gain in adolescents and at key life stages | Source 2, p. 11.0 |
+| **Insulin‑resistance testing** | Routine clinical insulin assays are of *limited relevance* and should **not** be used as a prerequisite for lifestyle advice. | • Lifestyle advice proceeds regardless of insulin‑resistance test results <br>• Focus on interventions that improve insulin sensitivity (e.g., exercise, diet) without requiring a lab confirmation | Source 2, p. 11.0 |
+| **Psychological support (when needed)** | Offer evidence‑based psychological therapy (e.g., CBT) for women experiencing disordered eating, body‑image distress, low self‑esteem, or psychosexual dysfunction. This can be part of the broader first‑line lifestyle package. | • Align therapy with regional general‑population guidelines <br>• Consider therapy before pharmacologic treatment for anxiety/depression, reserving meds for clearly documented, persistent mental‑health conditions | Source 4, p. 10.0 |
+
+**Practical take‑away for clinicians**
+
+1. **Start with a multicomponent lifestyle plan** that combines regular physical activity, a balanced diet consistent with population guidelines, and explicit behavioural support (goal‑setting, self‑monitoring, SMART goals).  
+2. **Provide ongoing, structured clinical support** (e.g., scheduled follow‑ups, digital tools) to sustain changes; the guideline notes this approach is as effective in PCOS as in the general population.  
+3. **Integrate behavioural or CBT‑style interventions** early, especially when psychosocial issues (e.g., body‑image concerns) are present, to enhance adherence and emotional wellbeing.  
+4. **Avoid weight‑stigma language** and focus on health optimisation, regardless of the patient’s BMI.  
+5. **Do not require insulin‑resistance assays** before initiating lifestyle advice; the interventions themselves address the underlying pathophysiology.
+
+These recommendations collectively constitute the **first‑line management strategy** for PCOS as outlined in the International PCOS Guideline 2023.","Multicomponent lifestyle interventions combining diet, exercise, and behavioral strategies are recommended as the first-line management for all women with PCOS. Lifestyle interventions aim to optimize general health, quality of life, and emotional wellbeing. Lifestyle interventions aim to improve metabolic health including central adiposity and lipid profile. Behavioral strategies such as SMART goal-setting, self-monitoring, and problem-solving should be included to support lifestyle change. No single dietary composition has been shown to be superior for outcomes in women with PCOS."
+5,Adolescent vs Adult Nuance,How should diagnostic assessment for PCOS differ between adolescents and adult women?,,0.249999999975,0.3333333333333333,0.9288077038805183,"**Key points for clinicians – how the diagnostic work‑up for PCOS is adapted for adolescents versus adult women**
+
+| Aspect | Adolescents (≤ 8 years after menarche) | Adults (reproductive‑age women) |
+|--------|----------------------------------------|---------------------------------|
+| **When to consider PCOS** | • Irregular cycles that fall **outside the normal pubertal window** should trigger a PCOS risk assessment (see age‑specific cycle definitions).<br>• Even if the full Rotterdam “2‑of‑3” criteria are not met, the adolescent can be labelled “increased risk” and scheduled for re‑assessment before full reproductive maturity (≈ 8 years post‑menarche)【Source 1†1.1.4】. | • Presence of **any two** of the three Rotterdam features (irregular/ovulatory‑dysfunction cycles, biochemical hyperandrogenism, polycystic ovarian morphology) after exclusion of other causes leads to a PCOS diagnosis (Algorithm 1)【Source 4†Step 3】. |
+| **Definition of irregular cycles** | • **First year post‑menarche**: irregularity is expected as part of puberty.<br>• **> 1 year to < 3 years post‑menarche**: cycle length < 21 days or > 45 days.<br>• **> 3 years post‑menarche to perimenopause**: cycle length < 21 days or > 35 days, or < 8 cycles / year.<br>• Any single cycle > 90 days after the first year is also abnormal.  These age‑specific cut‑offs are the trigger for further PCOS evaluation【Source 2†1.1.1】. | • Same cycle‑length criteria apply, but the “pubertal transition” window is no longer relevant; any cycle meeting the > 1 year post‑menarche thresholds is considered abnormal. |
+| **Biochemical hyper‑androgenism** | • Use **total and free testosterone** (or calculated free androgen index) to assess hyperandrogenism, as recommended for all ages【Source 1†2.2.1】. <br>• In adolescents, interpretation must consider normal pubertal hormonal fluctuations; a single borderline result may not be sufficient for a definitive “hyperandrogenism” label. | • Same laboratory approach (total & free testosterone). In adults, abnormal values are more readily interpreted as a Rotterdam criterion when other causes are excluded. |
+| **Ultrasound (ovarian morphology)** | • **Ultrasound is **not** recommended as a primary diagnostic tool in adolescents**. If only irregular cycles **or** hyperandrogenism are present, the adolescent is classified as “at risk” and re‑evaluated later【Source 4†Step 3】. | • **Trans‑vaginal (or high‑resolution trans‑abdominal) ultrasound is required** to assess polycystic ovarian morphology (PCOM) **after** other endocrine disorders (TSH, prolactin, 17‑OH‑progesterone, FSH, Cushing, adrenal tumour, etc.) have been excluded【Source 4†Step 3】. A positive PCOM finding together with one other Rotterdam feature confirms the diagnosis. |
+| **Exclusion of other disorders** | • Same principle (exclude thyroid, prolactin, adrenal, etc.), but often done **before** any imaging is considered, because imaging is deferred. | • Mandatory step **before** accepting PCOM as a diagnostic criterion (see algorithm). |
+| **Timing of reassessment** | • If the adolescent does **not** meet full criteria, schedule a **re‑assessment at or before full reproductive maturity (≈ 8 years post‑menarche)**【Source 1†1.1.4】. This allows time for the phenotype to evolve and for more reliable imaging. | • No mandated future reassessment; diagnosis is made once criteria are satisfied. |
+| **Psychosocial & developmental considerations** | • Discuss the value and optimal timing of assessment with the patient **and parents/guardians**, acknowledging the psychosocial impact of labeling a young person with a chronic condition【Source 1†1.1.3】.<br>• Emphasise shared decision‑making and avoid premature labeling. | • Shared decision‑making remains essential, but the focus shifts to treatment planning rather than timing of diagnosis. |
+| **Lifestyle & weight counseling** | • Offer **healthy‑lifestyle counseling** without emphasizing intentional weight loss; weight may be a non‑modifiable risk factor in this age group【Source 3†3.6.5】. | • Lifestyle counseling is also recommended, but weight‑related interventions may be more directly linked to symptom control in adults. |
+
+### Practical workflow for clinicians
+
+1. **Take a detailed menstrual history** and apply the age‑specific cycle definitions (Source 2).  
+2. **Measure total and free testosterone** (or free androgen index) if hyperandrogenism is suspected (Source 1).  
+3. **Adolescents**  
+   * If **only one** Rotterdam feature (irregular cycles **or** hyperandrogenism) is present → label as “increased risk” and plan reassessment ≤ 8 years post‑menarche (Source 1).  
+   * **Do not order pelvic ultrasound** at this stage (Source 4).  
+4. **Adults**  
+   * If **any one** feature is present, **order pelvic ultrasound** after excluding other endocrine disorders (TSH, prolactin, etc.) (Source 4).  
+   * When **two** features are confirmed → PCOS risk is high; proceed with guideline‑based management.  
+5. **Document** the rationale for timing decisions, especially in adolescents, and involve the patient (and guardians when appropriate) in shared decision‑making (Source 3).  
+
+### Bottom line
+
+- **Adolescents**: focus on menstrual pattern and biochemical androgen status, defer imaging, and schedule a future reassessment; be mindful of developmental and psychosocial context.  
+- **Adults**: complete the full Rotterdam work‑up, including ultrasound after exclusion of other causes, to confirm PCOS risk and guide management.  
+
+All recommendations above are drawn directly from the Monash International PCOS Guideline (2023) and should be applied in the context of each patient’s individual preferences and clinical presentation.","In adolescents, diagnostic criteria are more stringent: both ovulatory dysfunction and clinical or biochemical hyperandrogenism are required for diagnosis. Ultrasound examination for polycystic ovarian morphology (PCOM) is not recommended in adolescents within 8 years of menarche. This exclusion is due to the high prevalence of multi-follicular ovaries during normal pubertal maturation."
+6,Lay Terminology (CRAG Rewrite),why do I have weird skipped periods and extra dark facial hair growing?,0.2692307692307692,0.6388888888675925,0.25,0.32323264708891053,"**Clinical decision‑support summary**
+
+| Patient‑reported feature | How the guideline frames it | What it suggests for PCOS risk |
+|--------------------------|----------------------------|---------------------------------|
+| **Irregular / “skipped” menstrual periods** | Irregular (oligo‑/anovulatory) cycles are one of the three core Rotterdam criteria for PCOS. The guideline notes that chronic anovulation, especially when combined with hyperandrogenism, is linked to a higher metabolic risk (e.g., insulin resistance)【Source 2】. | This symptom raises the *ovulatory‑function* component of the Rotterdam “2‑out‑of‑3” rule. |
+| **New or increased dark facial hair (hirsutism)** | The Monash International Guideline states that “the presence of hirsutism alone should be considered predictive of biochemical hyperandrogenism and PCOS in adults”【Source 4, 1.3.1】. A modified Ferriman‑Gallwey score of 4‑6 is recommended for detection【Source 4, 1.3.5】. | This symptom fulfills the *clinical hyperandrogenism* component of the Rotterdam criteria. |
+
+### How the Rotterdam “2‑out‑of‑3” criteria apply
+- **Criterion 1:** Oligo‑/anovulation (irregular periods).  
+- **Criterion 2:** Clinical or biochemical hyperandrogenism (hirsutism).  
+- **Criterion 3:** Polycystic ovarian morphology on ultrasound.
+
+Because the patient already reports **two** of the three features (irregular cycles + hirsutism), the guideline indicates that PCOS becomes a **considerable risk** if a third component (ultrasound evidence) is also present, or if the clinician determines that the two observed features are sufficient for a provisional diagnosis after excluding mimicking conditions (e.g., thyroid disease, hyperprolactinemia, adrenal disorders)【Source 3】.
+
+### Recommended next steps for the treating clinician
+1. **Comprehensive history & physical exam** – Document menstrual pattern, onset and severity of hirsutism (use the modified Ferriman‑Gallwey score), acne, female‑pattern hair loss, weight changes, and any metabolic symptoms (e.g., acanthosis nigricans).  
+2. **Targeted laboratory evaluation** –  
+   - Serum total or free testosterone (or other androgen assays) to confirm biochemical hyperandrogenism.  
+   - Exclude other endocrine disorders: thyroid‑stimulating hormone (TSH), prolactin, 17‑hydroxyprogesterone (if indicated).  
+3. **Pelvic ultrasound** – Assess ovarian size and follicle distribution to determine whether polycystic ovarian morphology is present.  
+4. **Metabolic assessment** – Given the association between chronic anovulation + hyperandrogenism and insulin resistance, consider fasting glucose/HbA1c and lipid profile.  
+5. **Counselling & psychosocial support** – Acknowledge the potential psychosocial impact of hirsutism and menstrual irregularity, and discuss treatment goals (fertility, metabolic health, cosmetic concerns).  
+
+### If findings are discordant
+- **Scenario A:** Labs show normal androgen levels but ultrasound reveals polycystic morphology. The Rotterdam rule still allows a PCOS diagnosis because the patient meets **oligo‑/anovulation + polycystic ovaries** (2 out of 3).  
+- **Scenario B:** Ultrasound is normal but biochemical hyperandrogenism is confirmed. Here, **oligo‑/anovulation + biochemical hyperandrogenism** satisfies the criteria.  
+
+In either case, the guideline emphasizes that **PCOS remains a diagnosis of exclusion**; other conditions that can mimic the phenotype must be ruled out before confirming the syndrome【Source 3】.
+
+### Management considerations for the hyperandrogenic symptom (facial hair)
+- **Laser hair removal** – More sessions may be needed in women with PCOS compared with idiopathic hirsutism【Source 1, 4.8.2】.  
+- **Adjunctive therapy** – Adding a combined oral contraceptive pill (with or without an anti‑androgen) to laser treatment can improve hair reduction and maintenance【Source 1, 4.8.4】.  
+- **Alternative light‑based methods** – Intense Pulse Light (IPL) is an option, though evidence suggests less pronounced benefit than laser and no support for home‑based IPL kits【Source 1, 4.8.5】.  
+
+### Bottom line for the clinician
+- The patient’s **irregular periods** and **new facial hirsutism** together constitute two core Rotterdam criteria, indicating a **high likelihood** of PCOS pending exclusion of other disorders and, ideally, confirmation of ovarian morphology or biochemical hyperandrogenism.  
+- Proceed with the outlined diagnostic work‑up, address metabolic risk, and discuss both medical and cosmetic treatment pathways as appropriate.  
+
+*All statements are framed as risk indicators and decision‑support guidance; definitive diagnosis should be made by the treating clinician after full evaluation.*",Irregular or skipped menstrual periods and abnormal dark facial hair growth are classic manifestations of PCOS. Skipped periods indicate ovulatory dysfunction such as oligo-amenorrhea. Excess dark facial hair indicates clinical hyperandrogenism or hirsutism. Clinical guidelines recommend seeking medical evaluation to determine if diagnostic criteria are met and rule out other causes.
+7,Out of Scope (Hard Stop / No-Hallucination),What is the recommended dosing titration for semaglutide in pediatric differentiated thyroid carcinoma?,0.7692307692307693,,0.0,0.0,"I’m sorry, but the guideline excerpts you provided do not contain any information about the use of semaglutide—let alone dosing or titration recommendations for semaglutide in children with differentiated thyroid carcinoma. The material focuses on thyroid‑stimulating hormone (TSH) levels, the relationship between TSH and papillary thyroid cancer risk, and the role of levothyroxine (LT4) therapy in nodular thyroid disease. It does not discuss semaglutide, pediatric dosing, or therapeutic strategies for differentiated thyroid carcinoma.
+
+Because the source material does not address this topic, I cannot provide a guideline‑based recommendation. For dosing and titration of semaglutide (or any off‑label therapy) in pediatric patients with differentiated thyroid carcinoma, you would need to consult the specific prescribing information, pediatric oncology guidelines, or a specialist in pediatric endocrine oncology.",This information is not available in the loaded PCOS clinical guidelines. Semaglutide dosing titration for pediatric differentiated thyroid carcinoma is outside the scope of PCOS diagnostic and management protocols.

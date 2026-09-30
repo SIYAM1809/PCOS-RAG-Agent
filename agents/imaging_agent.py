@@ -2,12 +2,14 @@
 Imaging Agent Tool Wrapper (agents/imaging_agent.py).
 
 Wraps the PyTorch ConvNeXt model for ultrasound image analysis and classification.
+When the trained model artifact is unavailable, falls back to a pixel-intensity
+heuristic that estimates follicle-like structure density from the image itself.
 """
 
 import os
 import sys
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Tuple
 
 if sys.platform == "win32":
     try:
@@ -48,12 +50,11 @@ class ImagingAgent:
                 print(f"[ImagingAgent] Could not load model from {self.model_path}: {e}")
                 self.model = None
         else:
-            print(f"[ImagingAgent] Model file not found at {self.model_path}. Running with imaging simulation fallback.")
+            print(f"[ImagingAgent] Model file not found at {self.model_path}. Running with pixel-intensity heuristic fallback.")
 
     def _preprocess(self, image: Image.Image) -> torch.Tensor:
         """Preprocesses PIL image for ConvNeXt inference (Resize 224x224, Normalize)."""
         image = image.convert("RGB").resize((224, 224))
-        # Convert to float tensor and normalize
         arr = torch.tensor(list(image.getdata()), dtype=torch.float32).reshape(224, 224, 3)
         arr = arr.permute(2, 0, 1) / 255.0
         # Standard ImageNet normalization
@@ -65,7 +66,7 @@ class ImagingAgent:
     def run(self, image_path: str) -> dict:
         """Runs ConvNeXt inference on ultrasound image."""
         if not os.path.exists(image_path):
-            # If path does not exist physically, return a safe informative error/mock for testing
+            # If path does not exist physically, return a safe informative mock for testing
             return self._simulated_inference(image_path)
 
         try:
@@ -97,9 +98,59 @@ class ImagingAgent:
             print(f"[ImagingAgent] Image processing error: {e}")
             return self._simulated_inference(image_path)
 
-    def _heuristic_fallback(self, image: Image.Image):
-        """Standard baseline scoring for image object."""
-        return 0.88, 0.88
+    def _heuristic_fallback(self, image: Image.Image) -> Tuple[float, float]:
+        """
+        Pixel-intensity heuristic that estimates PCOS probability from image statistics
+        when the trained model weights are unavailable.
+
+        PCOS ultrasounds characteristically show:
+          - High contrast between peripheral follicles (dark circles) and bright stroma
+          - Many small hypoechoic (dark) regions arranged peripherally
+          - Increased central echogenicity (bright centre)
+
+        This heuristic uses:
+          1. Dark-pixel density  — fraction of pixels below low-intensity threshold
+             (proxy for follicle count / anechoic regions)
+          2. Contrast variance   — std-dev of brightness across the image
+             (proxy for follicle-stroma boundary sharpness)
+          3. Centre-vs-edge brightness ratio — brighter centre is consistent with
+             stromal hypertrophy characteristic of PCOS
+
+        Returns:
+            (pcos_probability, confidence) — both in [0, 1].
+        """
+        gray = image.convert("L").resize((112, 112))
+        import torch as _torch
+        pixels = _torch.tensor(list(gray.getdata()), dtype=_torch.float32) / 255.0  # [0,1]
+        h, w = 112, 112
+        grid = pixels.reshape(h, w)
+
+        # 1. Dark-pixel density (anechoic follicle proxy)
+        dark_fraction = (grid < 0.30).float().mean().item()  # fraction below 30% brightness
+
+        # 2. Image contrast (std-dev of normalised pixel values)
+        contrast = grid.std().item()
+
+        # 3. Centre vs edge brightness ratio
+        centre = grid[h // 4: 3 * h // 4, w // 4: 3 * w // 4].mean().item()
+        edge_mask = _torch.ones(h, w, dtype=_torch.bool)
+        edge_mask[h // 4: 3 * h // 4, w // 4: 3 * w // 4] = False
+        edge = grid[edge_mask].mean().item()
+        centre_edge_ratio = centre / (edge + 1e-6)
+
+        # Score components — weights tuned to ultrasound morphology heuristics
+        score = (
+            0.50 * min(dark_fraction / 0.25, 1.0)       # saturates at 25% dark pixels
+            + 0.30 * min(contrast / 0.20, 1.0)           # saturates at std-dev of 0.20
+            + 0.20 * min((centre_edge_ratio - 1.0) / 0.5, 1.0)  # centre 50% brighter than edge
+        )
+        score = max(0.0, min(score, 1.0))
+
+        # Confidence is lower when the image statistics are ambiguous (near the 0.5 boundary)
+        confidence = 0.50 + abs(score - 0.50) * 0.80
+        confidence = max(0.50, min(confidence, 0.95))
+
+        return round(score, 4), round(confidence, 4)
 
     def _simulated_inference(self, image_path: str) -> dict:
         """Simulated response for testing when sample image paths are referenced in queries."""

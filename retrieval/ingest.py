@@ -54,6 +54,28 @@ def get_weaviate_client():
     return client
 
 
+def clean_pdf_text(text: str, filename: str) -> str:
+    """
+    Cleans font encoding artifacts in clinical PDF guidelines.
+    Specifically maps PostScript font glyph codes from Monash 2023 to standard Unicode math symbols.
+    """
+    if "monash" in filename.lower():
+        replacements = {
+            "/C21": "≥",
+            "/C22": "≤",
+            "/C24": ">",
+            "/C20": "±",
+            "/C13": " ",
+            "/H20003": " ",
+        }
+        for bad, good in replacements.items():
+            text = text.replace(bad, good)
+
+    # Common typographic ligature cleanups
+    text = text.replace("ﬁ", "fi").replace("ﬂ", "fl")
+    return text
+
+
 def load_pdf_documents(guidelines_dir: Path):
     """Loads all PDF files from the guidelines directory."""
     pdf_files = list(guidelines_dir.glob("*.pdf"))
@@ -71,7 +93,8 @@ def load_pdf_documents(guidelines_dir: Path):
         loader = PyPDFLoader(str(pdf_path))
         docs = loader.load()
         for doc in docs:
-            # Add clean filename to metadata
+            # Clean font glyph artifacts and add clean filename to metadata
+            doc.page_content = clean_pdf_text(doc.page_content, pdf_path.name)
             doc.metadata["source_file"] = pdf_path.name
         all_docs.extend(docs)
         print(f"       -> Loaded {len(docs)} pages.")
